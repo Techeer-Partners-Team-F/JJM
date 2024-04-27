@@ -33,7 +33,7 @@ public class BoardController {
             BoardResponseDto boardResponseDto = boardService.getBoard(id);
             return ResponseEntity.ok().body(boardResponseDto);
         } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("게시물 작성에 실패하였습니다.");
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("게시물 조회에 실패하였습니다.");
         }
     }
 
