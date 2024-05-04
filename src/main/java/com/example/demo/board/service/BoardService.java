@@ -4,6 +4,7 @@ import com.example.demo.board.dto.BoardRequestDto;
 import com.example.demo.board.dto.BoardResponseDto;
 import com.example.demo.board.entity.Board;
 import com.example.demo.board.repository.BoardRepository;
+import jakarta.persistence.EntityManager;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -13,6 +14,7 @@ import org.springframework.stereotype.Service;
 public class BoardService {
 
     private final BoardRepository boardRepository;
+    private final EntityManager em;
 
     @Transactional
     public Long createBoard(BoardRequestDto boardRequestDto) {
@@ -39,6 +41,18 @@ public class BoardService {
         Board board = boardRepository.findById(boardId)
                 .orElseThrow(() -> new IllegalArgumentException("해당 게시글을 찾을 수 없습니다."));
         boardRepository.delete(board);
+    }
+
+    @Transactional
+    public Boolean likeBoard(Long boardId) {
+        Board board = boardRepository.findById(boardId)
+                .orElseThrow(() -> new IllegalArgumentException("해당 게시글을 찾을 수 없습니다."));
+        if (!board.getIsLikeBoard()) {
+            board.setLikeBoard(true);
+        } else {
+            board.setLikeBoard(false);
+        }
+        return board.getIsLikeBoard();
     }
 }
 

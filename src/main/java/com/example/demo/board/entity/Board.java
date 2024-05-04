@@ -5,6 +5,7 @@ import jakarta.persistence.*;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.ColumnDefault;
 
 @Getter
 @Entity
@@ -21,15 +22,24 @@ public class Board {
     @Column
     private String content;
 
+    @Column
+    @ColumnDefault("false")
+    private Boolean isLikeBoard;
+
     @Builder
     public Board(Long id, String title, String content) {
         this.id = id;
         this.title = title;
         this.content = content;
+        this.isLikeBoard = false;
     }
 
     public void update(BoardRequestDto boardRequestDto) {
         this.title = boardRequestDto.getTitle();
         this.content = boardRequestDto.getContent();
+    }
+
+    public void setLikeBoard(boolean likeBoard) {
+        this.isLikeBoard = likeBoard;
     }
 }

@@ -56,4 +56,14 @@ public class BoardController {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("게시물 삭제에 실패하였습니다.");
         }
     }
+
+    @PostMapping("/board/{id}/like")
+    public ResponseEntity<?> likeBoard(@PathVariable Long id) {
+        try {
+            Boolean temp = boardService.likeBoard(id);
+            return ResponseEntity.ok().body(temp);
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("게시물 좋아요에 실패하였습니다.");
+        }
+    }
 }
