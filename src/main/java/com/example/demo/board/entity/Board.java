@@ -1,15 +1,19 @@
 package com.example.demo.board.entity;
 
 import com.example.demo.board.dto.BoardRequestDto;
+import com.example.demo.coment.entity.Comment;
 import jakarta.persistence.*;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.ColumnDefault;
 
+import java.util.List;
+
 @Getter
 @Entity
 @NoArgsConstructor
+@Table(name = "board")
 public class Board {
 
     @Id
@@ -25,6 +29,9 @@ public class Board {
     @Column
     @ColumnDefault("false")
     private Boolean isLikeBoard;
+
+    @OneToMany(mappedBy = "board", fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
+    private List<Comment> comments;
 
     @Builder
     public Board(Long id, String title, String content) {

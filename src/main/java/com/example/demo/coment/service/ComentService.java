@@ -1,10 +1,12 @@
 package com.example.demo.coment.service;
 
-import com.example.demo.coment.dto.ComentDto;
-import com.example.demo.coment.entity.Coment;
+import com.example.demo.coment.dto.CommentDto;
+import com.example.demo.coment.entity.Comment;
 import com.example.demo.coment.repository.ComentRepository;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -14,33 +16,39 @@ public class ComentService {
     private final ComentRepository comentRepository;
 
     @Transactional
-    public Long createComent(ComentDto comentDto) {
-        return comentRepository.save(comentDto.toEntity()).getId();
+    public Long createComent(CommentDto commentDto) {
+        return comentRepository.save(commentDto.toEntity()).getId();
     }
 
     @Transactional
-    public ComentDto getComent(Long comentId) {
-        Coment coment = comentRepository.findById(comentId)
+    public CommentDto getComent(Long comentId) {
+        Comment comment = comentRepository.findById(comentId)
                 .orElseThrow(() -> new IllegalArgumentException("해당 댓글을 찾을 수 없습니다."));
 
-        return ComentDto.fromEntity(coment);
+        return CommentDto.fromEntity(comment);
     }
 
     @Transactional
-    public ComentDto updateComent(Long comentId, ComentDto comentDto) {
-        Coment coment = comentRepository.findById(comentId)
+    public Page<CommentDto> getComents(Pageable pageable) {
+        return comentRepository.findAll(pageable)
+                .map(CommentDto::fromEntity);
+    }
+
+    @Transactional
+    public CommentDto updateComent(Long comentId, CommentDto commentDto) {
+        Comment comment = comentRepository.findById(comentId)
                 .orElseThrow(() -> new IllegalArgumentException("해당 댓글을 찾을 수 없습니다."));
 
-        coment.update(comentDto);
-        return comentDto.fromEntity(coment);
+        comment.update(commentDto);
+        return commentDto.fromEntity(comment);
     }
 
 
     @Transactional
     public void deletedComent(Long comentId) {
-        Coment coment = comentRepository.findById(comentId)
+        Comment comment = comentRepository.findById(comentId)
                 .orElseThrow(() -> new IllegalArgumentException("해당 댓글을 찾을 수 없습니다."));
 
-        comentRepository.delete(coment);
+        comentRepository.delete(comment);
     }
 }
