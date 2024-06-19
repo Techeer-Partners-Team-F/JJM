@@ -1,8 +1,8 @@
-package com.example.demo.coment.entity;
+package com.example.demo.comment.entity;
 
 
 import com.example.demo.board.entity.Board;
-import com.example.demo.coment.dto.CommentDto;
+import com.example.demo.comment.dto.CommentDto;
 import jakarta.persistence.*;
 import lombok.Builder;
 import lombok.Getter;

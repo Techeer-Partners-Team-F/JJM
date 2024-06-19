@@ -1,12 +1,9 @@
 package com.example.demo.board.dto;
 
 import com.example.demo.board.entity.Board;
-import com.example.demo.coment.entity.Comment;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-
-import java.util.List;
 
 @Getter
 @AllArgsConstructor

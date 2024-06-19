@@ -1,6 +1,6 @@
-package com.example.demo.coment.dto;
+package com.example.demo.comment.dto;
 
-import com.example.demo.coment.entity.Comment;
+import com.example.demo.comment.entity.Comment;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;

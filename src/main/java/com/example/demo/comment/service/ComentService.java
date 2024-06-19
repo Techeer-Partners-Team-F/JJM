@@ -1,8 +1,8 @@
-package com.example.demo.coment.service;
+package com.example.demo.comment.service;
 
-import com.example.demo.coment.dto.CommentDto;
-import com.example.demo.coment.entity.Comment;
-import com.example.demo.coment.repository.ComentRepository;
+import com.example.demo.comment.dto.CommentDto;
+import com.example.demo.comment.entity.Comment;
+import com.example.demo.comment.repository.ComentRepository;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;

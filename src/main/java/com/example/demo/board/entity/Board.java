@@ -1,7 +1,7 @@
 package com.example.demo.board.entity;
 
 import com.example.demo.board.dto.BoardRequestDto;
-import com.example.demo.coment.entity.Comment;
+import com.example.demo.comment.entity.Comment;
 import jakarta.persistence.*;
 import lombok.Builder;
 import lombok.Getter;

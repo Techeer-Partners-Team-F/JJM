@@ -1,7 +1,7 @@
-package com.example.demo.coment.controller;
+package com.example.demo.comment.controller;
 
-import com.example.demo.coment.dto.CommentDto;
-import com.example.demo.coment.service.ComentService;
+import com.example.demo.comment.dto.CommentDto;
+import com.example.demo.comment.service.ComentService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
